@@ -8,12 +8,16 @@ import { BreedItem } from "./BreedItem";
 export const BreedList = () => {
 
     const [breeds, setBreeds] = useState<any[]>([]);
+    const [filteredBreeds, setFilteredBreads] = useState<any[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
+
 
     useEffect(() => {
 
         async function getBreadList() {
             const breedList = await BreedController.getAllBreeds();
             setBreeds(breedList);
+            setFilteredBreads(breedList);
 
         }
         getBreadList();
@@ -21,7 +25,15 @@ export const BreedList = () => {
     }, []);
 
     const handleSearch = (e: any) => {
-        console.log(e.target.value);
+        if (e.target.value.length > 2) {
+            let filteredBreeds = breeds.filter((breed: Breed) => {
+                return breed.breedName.toLowerCase().includes(e.target.value.toLowerCase());
+            });
+            setFilteredBreads(filteredBreeds);
+        } else {
+            setFilteredBreads(breeds)
+        }
+
     }
 
     return (
@@ -37,7 +49,7 @@ export const BreedList = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 ">
-                {breeds.map((breed: Breed) => {
+                {filteredBreeds.map((breed: Breed) => {
                     return <BreedItem key={breed.id} breed={breed} />
                 })}
 
