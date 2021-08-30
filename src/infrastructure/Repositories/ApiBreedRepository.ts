@@ -11,13 +11,22 @@ export default class ApiBreedRepository implements BreedRepository {
     return breeds;
   }
 
-  async getByName(name: string): Promise<Breed> {
-    const response = await fetch(`https://dog.ceo/api/breed/${name}/images`);
+  async getByName(breed: string): Promise<Breed> {
+    const response = await fetch(`https://dog.ceo/api/breed/${breed}/images`);
     const data = await response.json();
-    return new Breed(name, [], Array.from(data.message));
+    return new Breed(breed, [], Array.from(data.message));
   }
 
   getBySubbreed(name: string): Promise<Breed[]> {
     throw new Error("Method not implemented.");
+  }
+  async getImageByBreed(breed: string): Promise<string> {
+    const response = await fetch(
+      `https://dog.ceo/api/breed/${breed}/images/random/1`
+    );
+
+    const data = await response.json();
+
+    return data.message[0];
   }
 }

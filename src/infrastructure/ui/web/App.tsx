@@ -1,28 +1,14 @@
 import React from 'react';
-import { useEffect } from "react";
-import BreedController from "../../controllers/BreedController";
+
+import { Home } from "./pages/home";
 
 
 function App() {
-  useEffect(() => {
-
-    async function getBreadList() {
-      const breedList = await BreedController.getAllBreeds(); 
-      console.log(breedList);
-    }
-    getBreadList();
-
-
-    async function getBreedImages() {
-      const breedImages = await BreedController.getBreedByName('hound');
-      console.log(breedImages);
-    } 
-    getBreedImages();
-  }, []);
 
   return (
-    <div id='App' className="App">
-     
+    <div id='App' className="container mx-auto">
+      <Home />
+
     </div>
   );
 }

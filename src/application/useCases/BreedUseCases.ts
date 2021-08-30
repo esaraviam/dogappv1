@@ -1,10 +1,13 @@
 import Breed from "../../domain/entities/Breed";
 import BreedRepository from "../../domain/interfaces/BreedRepository";
 
-export function getBreadList(
+export async function getBreadList(
   breedRepository: BreedRepository
 ): Promise<Breed[]> {
-  return breedRepository.getList();
+  //get all breeds
+  let breedList = await breedRepository.getList();
+
+  return breedList;
 }
 
 export function getBreedByName(
@@ -12,4 +15,11 @@ export function getBreedByName(
   breedName: string
 ): Promise<Breed> {
   return breedRepository.getByName(breedName);
+}
+
+export function getBreedImage(
+  breedRepository: BreedRepository,
+  breedName: string
+): Promise<string> {
+  return breedRepository.getImageByBreed(breedName);
 }

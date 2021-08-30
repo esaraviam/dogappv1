@@ -2,6 +2,9 @@ import Breed from "../../domain/entities/Breed";
 import BreedRepository from "../../domain/interfaces/BreedRepository";
 
 export default class MockBreedRepository implements BreedRepository {
+  getImageByBreed(breed: string): Promise<string> {
+    throw new Error("Method not implemented.");
+  }
   async getList(): Promise<Breed[]> {
     const list: Breed[] = [];
     list.push(
