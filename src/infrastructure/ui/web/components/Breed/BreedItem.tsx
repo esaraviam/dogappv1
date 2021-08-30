@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from "react-router-dom"
+
 import Breed from "../../../../../domain/entities/Breed"
 import BreedController from '../../../../controllers/BreedController'
 
 interface IProps {
-    breed: Breed
+    breed: Breed,
+
 }
 
 export const BreedItem: React.FC<IProps> = ({ breed }) => {
@@ -31,7 +34,8 @@ export const BreedItem: React.FC<IProps> = ({ breed }) => {
                 </div>
                 <div className="flex justify-between p-6">
                     <div className="flex items-center space-x-4">
-                        <h1 className="text-lg text-gray-900 font-bold">{breed.breedName}</h1>
+                        <h1 className="text-lg text-gray-900 font-bold"  >
+                            <Link to={`/details/${breed.breedName}`} >{breed.breedName}</Link> </h1>
                     </div>
                 </div>
             </div>

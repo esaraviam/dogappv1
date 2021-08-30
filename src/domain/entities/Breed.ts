@@ -5,8 +5,9 @@ export default class Breed extends Entity {
   subBreeds: string[] = [];
   images: string[] = [];
   defaultImage: string;
+
   constructor(
-    breedName: string,
+    breedName: string = "",
     subBreeds: string[] = [],
     images: string[] = [],
     defaultImage: string = "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg"

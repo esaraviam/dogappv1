@@ -5,11 +5,15 @@ import BreedController from "../../../../controllers/BreedController";
 import Breed from "../../../../../domain/entities/Breed"
 import { BreedItem } from "./BreedItem";
 
+
+
+
 export const BreedList = () => {
+
+
 
     const [breeds, setBreeds] = useState<any[]>([]);
     const [filteredBreeds, setFilteredBreads] = useState<any[]>([]);
-    const [isLoading, setIsLoading] = useState(true);
 
 
     useEffect(() => {
@@ -24,6 +28,8 @@ export const BreedList = () => {
 
     }, []);
 
+
+
     const handleSearch = (e: any) => {
         if (e.target.value.length > 2) {
             let filteredBreeds = breeds.filter((breed: Breed) => {
@@ -36,6 +42,7 @@ export const BreedList = () => {
 
     }
 
+
     return (
         <div className="px-4 py-2 mt-5 w-100 min-h-screen">
 
@@ -44,7 +51,7 @@ export const BreedList = () => {
                     type="text"
                     onChange={handleSearch}
                     placeholder="please type the breed that you are looking for"
-                    className="h-10 mx w-full text-blue-400 px-3 border border-red-500"
+                    className="h-10  w-full text-green-400 px-3 border border-green-800"
                 />
             </div>
 
