@@ -3,7 +3,9 @@ import BreedRepository from "../../domain/interfaces/BreedRepository";
 
 export default class MockBreedRepository implements BreedRepository {
   getImageByBreed(breed: string): Promise<string> {
-    throw new Error("Method not implemented.");
+    return new Promise((resolve) =>
+      resolve("https://images.dog.ceo/breeds/beagle/n02088364_876.jpg")
+    );
   }
   async getList(): Promise<Breed[]> {
     const list: Breed[] = [];
