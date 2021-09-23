@@ -1,46 +1,55 @@
-# Getting Started with Create React App
+### Introduction
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Usually, when we develop react Apps, we only concern about separate in our directory map, hooks, components, pages, store,  etc. But this directory separation doesn't guarantee that our application will scale or be maintainable in the future.
 
-## Available Scripts
+Here's comes to help the <b>Domain-Driven Desing(DDD)<b> in particular in this article Hexagonal Architecture.
 
-In the project directory, you can run:
+We will implement a typescript project using react to apply some of the concepts of HA (Hexagonal Architecture)
 
-### `yarn start`
+First of all, to maintain this real we implement an existing API to get Dog Breeds Photos in the link bellow you can find the api documentation.
+[Dog CEO Api documentation](https://dog.ceo/dog-api/documentation/)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Let's get started
 
-### `yarn test`
+I'm gonna create a react app, using yarn and create react app CLI and typescript template to do this you need to type the following:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `yarn build`
+```javascript
+yarn create react-app dogapp --template typescript
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+this will create a boilerplate react app that we will modify to implement HA, first of all let's talk about design.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+###Hexagonal Architecture.
 
-### `yarn eject`
+The Hexagonal Architecture is based in layers like an onion, and propose three base layers, Domain , Application and Infrastructure. 
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+![alt HA Diagram](https://raw.githubusercontent.com/esaraviam/esaraviam/main/images/hexagon.png "Hexagonal Architecture Diagram")
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Hexagonal Architecture proposes that our domain is the core of the layers and that it does not couple to anything external. Instead of making explicit use and through the principle of inversion of dependencies, we couple ourselves to contracts (interfaces or ports) and not to specific implementations.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### The code.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+we will make a dog breed app so let's create some directories to implement HA.
 
-## Learn More
+To implement HA we need to separate our domain of the implementations so let create the layer proposed by HA.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+so we need to create 3 main folders to contain our app.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+I'll upload this in a github repository at the end of the post.
+
+<ul>
+<li>src</li>
+<ul>
+  <li>--domain</li>
+  <li>--application</li>
+  <li>--infrastructure</li>
+
+</ul>
+
+</ul>
+
+using this approach the domain folder does know how will be implemented, and the application layer only can access to domain but doesn't know how the infrastructure will be implemented
+
