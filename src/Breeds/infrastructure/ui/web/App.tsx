@@ -8,7 +8,6 @@ function App() {
   return (
     <div id='App' className="container mx-auto">
       <Home />
-
     </div>
   );
 }

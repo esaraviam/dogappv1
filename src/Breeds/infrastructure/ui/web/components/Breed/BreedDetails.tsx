@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from "react-router-dom";
+
 import Breed from "../../../../../domain/entities/Breed"
 import BreedController from "../../../../controllers/BreedController";
 
@@ -16,11 +17,14 @@ export const BreedDetails: React.FC<IProps> = () => {
     const [selectedBreed, setSelectedBreed] = useState<Breed>(new Breed())
 
     useEffect(() => {
-        async function getBreadList() {
+        console.log('Hola')
+        const getBreadList = async () => {
             const breed = await BreedController.getBreedByName(breedName)
             setSelectedBreed(breed)
         }
-        getBreadList()
+        getBreadList().then((r)=>{
+            console.log('Hola' , r);
+        })
     }, [breedName]);
 
     return (
@@ -29,7 +33,7 @@ export const BreedDetails: React.FC<IProps> = () => {
             <Link className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' to="/">Back to list</Link>
             <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 ">
                 {selectedBreed.images.map((image, index) => {
-                    return (<div className="bg-gray-100 flex items-center justify-center py-50 mb-5 mt-5">
+                    return (<div key={`breed-${index}`} className="bg-gray-100 flex items-center justify-center py-50 mb-5 mt-5">
                         <div className="max-w-md bg-white rounded-xl overflow-hidden cursor-pointer shadow-lg hover:shadow-2xl hover:scale-105 transform transition-all duration-500">
                             <div className="p-4">
                                 <img src={image} alt={selectedBreed.breedName} />

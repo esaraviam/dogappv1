@@ -9,11 +9,9 @@ export const Home = () => {
         <Router>
             <div className="container mx-auto">
                 <NavBar />
-
                 <Switch>
                     <Route exact path="/" component={BreedList} />
                     <Route exact path="/details/:breedName" component={BreedDetails} />
-
                 </Switch>
             </div>
         </Router>
