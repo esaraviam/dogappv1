@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import App from './infrastructure/ui/web/App';
+import App from './Breeds/infrastructure/ui/web/App';
 
 
 ReactDOM.render(

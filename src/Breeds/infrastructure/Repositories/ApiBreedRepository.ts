@@ -3,12 +3,18 @@ import BreedRepository from "../../domain/interfaces/BreedRepository";
 
 export default class ApiBreedRepository implements BreedRepository {
   async getList(): Promise<Breed[]> {
-    const response = await fetch("https://dog.ceo/api/breeds/list/all");
-    const data = await response.json();
-    const breeds = Object.keys(data.message).map(
-      (breedName) => new Breed(breedName, data.message[breedName])
-    );
-    return breeds;
+    try {
+      const response = await fetch("https://dog.ceo/api/breeds/list/all");
+      const data = await response.json();
+      const breeds = Object.keys(data.message).map(
+        (breedName) => new Breed(breedName, data.message[breedName])
+      );
+      return breeds;
+    } catch (error) {
+      return new Promise<Breed[]>((resolve, reject) => {
+        reject(error);
+      });
+    }
   }
 
   async getByName(breed: string): Promise<Breed> {

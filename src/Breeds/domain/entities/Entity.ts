@@ -1,5 +1,6 @@
 import Uid from "../interfaces/uid";
 
+
 export class Entity implements Uid {
   id: number;
   constructor() {
